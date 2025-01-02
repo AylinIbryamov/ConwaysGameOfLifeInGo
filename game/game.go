@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	screenWidth  = 500
-	screenHeight = 400
-	cellSize     = 10
+	screenWidth  = 700
+	screenHeight = 700
+	cellSize     = 5
 	width        = screenWidth / cellSize
 	height       = screenHeight / cellSize
 )
@@ -34,10 +34,10 @@ func NewGrid() Grid {
 
 func NewRandomGrid() Grid {
 	grid := NewGrid()
-	rand.Seed(time.Now().UnixNano())
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for y := range grid {
 		for x := range grid[y] {
-			grid[y][x] = rand.Float64() < 0.5
+			grid[y][x] = r.Float64() < 0.5
 		}
 	}
 	return grid
