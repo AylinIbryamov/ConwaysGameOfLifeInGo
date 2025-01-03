@@ -13,7 +13,7 @@ import (
 const (
 	screenWidth  = 700
 	screenHeight = 700
-	cellSize     = 5
+	cellSize     = 3
 	width        = screenWidth / cellSize
 	height       = screenHeight / cellSize
 )
@@ -84,7 +84,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	for y := range g.grid {
 		for x := range g.grid[y] {
 			if g.grid[y][x] {
-				ebitenutil.DrawRect(screen, float64(x*cellSize), float64(y*cellSize), cellSize, cellSize, color.White)
+				ebitenutil.DrawRect(screen, float64(x*cellSize), float64(y*cellSize), cellSize, cellSize, color.RGBA{0, 255, 0, 255})
 			}
 		}
 	}
@@ -96,7 +96,6 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 
 func RunGame() {
 	grid := NewRandomGrid()
-	// Initialize with a simple pattern (glider)
 
 	game := &Game{grid: grid}
 	ebiten.SetWindowSize(screenWidth, screenHeight)
